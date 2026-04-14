@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For Manasadevi ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --soft-pink: #ffb3c1;
+            --overlay-dark: rgba(0, 0, 0, 0.6); /* Adjust transparency here */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            
+            /* --- BACKGROUND IMAGE SETTINGS --- */
+            background: linear-gradient(var(--overlay-dark), var(--overlay-dark)), 
+                        url('image.png'); /* Ensure your file is named image.png */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Keeps image still while scrolling */
+            background-repeat: no-repeat;
+        }
+
+        /* 🧸 FLOATING TEDDIES */
+        .teddy-bg {
+            position: fixed;
+            top: -10%;
+            font-size: 25px;
+            opacity: 0.5;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            animation: floatDown linear forwards;
+        }
+
+        @keyframes floatDown {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110vh) translateX(50px) rotate(360deg); opacity: 0; }
+        }
+
+        /* HEADER & NAME */
+        .header-section { 
+            padding: 60px 20px 20px; 
+            position: relative;
+            z-index: 2; /* Keeps text above teddies */
+        }
+        
+        .name {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(60px, 15vw, 100px);
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+        .name span {
+            opacity: 0;
+            display: inline-block;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); text-shadow: 0 0 20px var(--primary-pink); }
+        }
+
+        .main-teddy { font-size: 80px; display: inline-block; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        /* 🎂 CAKE */
+        .cake-container { position: relative; width: 220px; margin: 50px auto; cursor: pointer; z-index: 2; }
+        #knife { font-size: 45px; position: absolute; top: -50px; left: 80px; transition: 0.8s; z-index: 10; }
+        .icing { height: 25px; background: #fff; border-radius: 50% 50% 0 0 / 20px 20px 0 0; }
+        .layer { height: 30px; }
+        .choco { background: #4b250a; }
+        .cream { background: var(--soft-pink); border-top: 2px solid white; border-bottom: 2px solid white; }
+        .candle { width: 12px; height: 35px; background: #fff; margin: 0 auto; position: relative; }
+        .flame { 
+            width: 14px; height: 18px; background: #ffa500; border-radius: 50%;
+            position: absolute; top: -15px; left: -1px; box-shadow: 0 0 15px #ff4500;
+            animation: flicker 0.1s infinite alternate;
+        }
+        @keyframes flicker { to { opacity: 0.7; transform: scale(1.1); } }
+        
+        .slice {
+            width: 65px; height: 110px; position: absolute; left: 75px; top: 15px;
+            display: none; z-index: 5;
+            background: linear-gradient(#fff 20%, #4b250a 20%, #4b250a 40%, var(--soft-pink) 40%, var(--soft-pink) 60%, #4b250a 60%);
+        }
+        .cutKnife { transform: translateY(110px) rotate(45deg); opacity: 0; }
+        .fall { display:block; animation: fall 1.2s forwards; }
+        @keyframes fall { to { transform: translateY(140px) rotate(30deg); opacity: 0; } }
+
+        /* PANELS */
+        .glass-panel {
+            display: none;
+            background: rgba(0, 0, 0, 0.4); /* Darker glass for background contrast */
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            width: 85%;
+            max-width: 400px;
+            margin: 40px auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        
+        input { padding: 12px; border-radius: 10px; border: none; width: 80%; text-align: center; font-size: 16px; background: rgba(255,255,255,0.9); }
+        button {
+            padding: 12px 30px; border-radius: 25px; border: none;
+            background: var(--primary-pink); color: white;
+            font-weight: bold; cursor: pointer; margin-top: 15px;
+            position: relative;
+            z-index: 3;
+        }
+        
+        video { width: 100%; border-radius: 15px; margin-top: 10px; }
+    </style>
+</head>
+
+<body>
+
+    <div class="header-section">
+        <h2>Happy Birthday di ❤️</h2>
+        <div class="name" id="name"></div>
+        <div class="main-teddy" id="teddy">🧸</div>
+        <p style="color: var(--soft-pink); margin-top: 5px; font-weight: 600;">Count Your Life By Smiles, Not Tears 😊</p>
+    </div>
+
+    <div class="cake-container" onclick="cutCake()">
+        <div id="knife">🔪</div>
+        <div class="cake">
+            <div class="candle"><div class="flame" id="flame"></div></div>
+            <div class="icing"></div>
+            <div class="layer choco"></div>
+            <div class="layer cream"></div>
+            <div class="layer choco"></div>
+        </div>
+        <div class="slice" id="slice"></div>
+    </div>
+
+    <button id="cutBtn" onclick="cutCake()">🎂 Tap to Cut Cake</button>
+
+    <div id="lockSection" class="glass-panel">
+        <h3>🔐 Secret Box</h3>
+        <p>Enter our password ❤️</p>
+        <input type="password" id="password" placeholder="Password here...">
+        <br>
+        <button onclick="startUnlock()">Open Surprise 💖</button>
+        <p id="error" style="color: #ffb3c1;"></p>
+    </div>
+
+    <div id="countdown" style="display:none; margin: 20px; position: relative; z-index: 2;">
+        <h3>💝 Loading your gift... <span id="count">5</span></h3>
+    </div>
+
+    <div id="videoBox" class="glass-panel">
+        <video id="myVideo" controls>
+            <source src="video.mp4" type="video/mp4">
+        </video>
+        <p>You are my soulmate</p>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="munbe-vaa.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // 💖 NAME ANIMATION
+        const text = "Manasadevi";
+        const nameContainer = document.getElementById("name");
+        text.split("").forEach((letter, index) => {
+            let span = document.createElement("span");
+            span.innerText = letter;
+            span.style.animationDelay = (index * 0.15) + "s";
+            nameContainer.appendChild(span);
+        });
+
+        // 🧸 CONTINUOUS FLOATING TEDDIES
+        function createFloatingTeddy() {
+            const teddy = document.createElement("div");
+            teddy.className = "teddy-bg";
+            teddy.innerText = Math.random() > 0.3 ? "🧸" : "💖";
+            teddy.style.left = Math.random() * 100 + "vw";
+            const size = Math.random() * 20 + 20;
+            teddy.style.fontSize = size + "px";
+            const duration = Math.random() * 5 + 6;
+            teddy.style.animationDuration = duration + "s";
+            document.body.appendChild(teddy);
+            setTimeout(() => { teddy.remove(); }, duration * 1000);
+        }
+        setInterval(createFloatingTeddy, 300);
+
+        // 🎂 CAKE CUTTING
+        let cakeCut = false;
+        function cutCake() {
+            if(cakeCut) return;
+            cakeCut = true;
+
+            const music = document.getElementById("bgMusic");
+            music.play().catch(e => console.log("Music play blocked."));
+
+            document.getElementById("knife").classList.add("cutKnife");
+            document.getElementById("flame").style.display = "none";
+            document.getElementById("cutBtn").style.display = "none";
+
+            setTimeout(() => {
+                document.getElementById("slice").classList.add("fall");
+                document.getElementById("teddy").innerText = "🤩🧸";
+            }, 600);
+
+            setTimeout(() => {
+                const lock = document.getElementById("lockSection");
+                lock.style.display = "block";
+                lock.scrollIntoView({ behavior: 'smooth' });
+            }, 1200);
+        }
+
+        // 🔐 UNLOCK & AUDIO CONTROL
+        function startUnlock() {
+            let pass = document.getElementById("password").value.toLowerCase();
+            const music = document.getElementById("bgMusic");
+
+            if (pass === "krishna") {
+                document.getElementById("lockSection").style.display = "none";
+                document.getElementById("countdown").style.display = "block";
+                
+                let count = 5;
+                let int = setInterval(() => {
+                    count--;
+                    document.getElementById("count").innerText = count;
+                    if (count <= 0) {
+                        clearInterval(int);
+                        document.getElementById("countdown").style.display = "none";
+                        
+                        music.pause();
+                        music.currentTime = 0;
+                        
+                        document.getElementById("videoBox").style.display = "block";
+                        const video = document.getElementById("myVideo");
+                        video.play();
+                        video.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 1000);
+            } else {
+                document.getElementById("error").innerText = "❌ Try again, my love!";
+            }
+        }
+    </script>
+</body>
+</html>
